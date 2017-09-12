@@ -2,6 +2,7 @@ import javafx.event.ActionEvent;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
@@ -17,9 +18,9 @@ public class Controller {
             x++;
             try {
                 System.out.println (myExcelBook.getSheetAt(0).getRow(x).getCell(0).getHyperlink().getAddress());
+//                CellReference cellRef = new CellReference(row.getRowNum(), myExcelBook.getSheetAt(0).getRow(x).getCell(0).getColumnIndex());
+//                System.out.print(cellRef.formatAsString());
             } catch (Exception e) {}
-
-          //  getCalltxt(myExcelBook.getSheetAt(0).getRow(x).getCell(0));
         }
         myExcelBook.close();
     }
