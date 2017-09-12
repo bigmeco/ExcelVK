@@ -1,9 +1,12 @@
+import com.vk.api.sdk.client.TransportClient;
+import com.vk.api.sdk.client.VkApiClient;
+import com.vk.api.sdk.httpclient.HttpTransportClient;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
@@ -13,6 +16,11 @@ import java.util.Objects;
 public class Controller {
     public TextField AddressExcle;
 
+    @FXML
+    public void initialize() {
+        TransportClient transportClient = HttpTransportClient.getInstance();
+        VkApiClient vk = new VkApiClient(transportClient);
+    }
     public void Sjitat(ActionEvent actionEvent) throws IOException {
         XSSFWorkbook myExcelBook = null;
         String addr= AddressExcle.getText()+".xlsx";
