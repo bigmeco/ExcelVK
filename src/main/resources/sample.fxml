@@ -34,7 +34,7 @@
                      </stops>
                   </LinearGradient>
                </textFill></Button>
-            <TextField layoutX="12.0" layoutY="39.0" prefHeight="39.0" prefWidth="416.0" promptText="Вставте адрес Excel файла..." />
+            <TextField fx:id="AddressExcle" layoutX="12.0" layoutY="39.0" prefHeight="39.0" prefWidth="416.0" promptText="Вставте адрес Excel файла..." />
             <Label layoutX="138.0" layoutY="14.0" text="Отправка сообшений из Excel" />
          </children>
       </Pane>

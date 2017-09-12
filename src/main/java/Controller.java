@@ -1,4 +1,5 @@
 import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
@@ -7,17 +8,24 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Controller {
+    public TextField AddressExcle;
+
     public void Sjitat(ActionEvent actionEvent) throws IOException {
         XSSFWorkbook myExcelBook = null;
-        myExcelBook = new XSSFWorkbook(new FileInputStream("C:/Users/bigmeco/Documents/ExcelVK/sima_19_spiski.xlsx"));
+        String addr= AddressExcle.getText()+".xlsx";
+        myExcelBook = new XSSFWorkbook(new FileInputStream(addr));
         myExcelBook.getSheetAt(0);
         int x = 1;
+        String UrlAddress= "";
         for (Row row : myExcelBook.getSheetAt(0)) {
             x++;
             try {
-                System.out.println (myExcelBook.getSheetAt(0).getRow(x).getCell(0).getHyperlink().getAddress());
+                if(Objects.equals(myExcelBook.getSheetAt(0).getRow(x).getCell(0).getHyperlink().getAddress(), UrlAddress)) {}
+                else {UrlAddress = (myExcelBook.getSheetAt(0).getRow(x).getCell(0).getHyperlink().getAddress());
+                    System.out.println(UrlAddress);}
 //                CellReference cellRef = new CellReference(row.getRowNum(), myExcelBook.getSheetAt(0).getRow(x).getCell(0).getColumnIndex());
 //                System.out.print(cellRef.formatAsString());
             } catch (Exception e) {}
