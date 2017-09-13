@@ -1,3 +1,6 @@
+import POJO.Example;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.ServiceActor;
@@ -24,12 +27,12 @@ public class Controller {
     @FXML
     public void initialize() throws IOException, ClientException, ApiException, InterruptedException {
 
-        vkApi = VkApi.with();
+        getVkPeople();
 
 
     }
 
-    public void Sjitat(ActionEvent actionEvent) throws IOException {
+    public void Sjitat(ActionEvent actionEvent) throws IOException, InterruptedException {
         XSSFWorkbook myExcelBook = null;
         String addr= AddressExcle.getText()+".xlsx";
         myExcelBook = new XSSFWorkbook(new FileInputStream(addr));
@@ -46,17 +49,23 @@ public class Controller {
 //                System.out.print(cellRef.formatAsString());
             } catch (Exception e) {}
         }
-        myExcelBook.close();
 
+
+        myExcelBook.close();
     }
 
 
-    public static String[] getVkPeople(String[] PepE) throws InterruptedException, IOException {
+    public static String[] getVkPeople() throws InterruptedException, IOException {
         String PepVk[] = {""};
-        for (int i = 0;i<100;i++){
+        for (int i = 0;i<10;i++){
             Thread.sleep(400);
             //System.out.println(vkApi.send("311267572", "tetetetet"));
-            System.out.println(vkApi.getPeople("311267572"));
+           // System.out.println(vkApi.getPeople("311267572"));
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+            Example reqvest = gson.fromJson(vkApi.getPeople("311267572"), Example.class);
+            reqvest.getResponse().get(0).getId();
+
         }
         return PepVk;
     }
